@@ -1,0 +1,57 @@
+<%- include('partials/header'); -%>
+
+<form>
+  <h2>Log in</h2>
+  <label for="username">Username</label>
+  <input type="text" name="username" required>
+  <div class="username error"></div>
+
+  <h2>Password</h2>
+  <label for="password">Password</label>
+  <input type="password" name="password" required>
+  <div class="password error"></div>
+
+  <button>Login</button>
+</form>
+
+<script>
+  const form = document.querySelector('form');
+  const usernameError = document.querySelector('.username.error') // This is the class for the email error above
+  const passwordError = document.querySelector('.password.error')
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    //reset errors
+    passwordError.textContent = '';
+    usernameError.textContent = '';
+
+    //get the values
+    const username = form.username.value;
+    const password = form.password.value;
+    //console.log(email, password); 
+
+    try {
+      const res = await fetch ('/login', {
+        method: 'POST',
+        body: JSON.stringify({username, password}),
+        headers: {'Content-Type': 'application/json'}
+      });
+
+      const data = await res.json();
+      console.log(data);
+      if(data.errors) { // if an error this will be truthy, this whole if statement is populating the error message with the error messages we already set
+        usernameError.textContent = data.errors.username;
+        passwordError.textContent = data.errors.password;
+      }
+      if(data.user) {
+        location.assign('/') // redirect to homepage if sign up is a success
+      }
+
+    } catch (err) {
+      console.log(err);
+    }
+  })
+</script>
+
+<%- include('partials/footer'); -%>

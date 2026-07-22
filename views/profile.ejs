@@ -1,0 +1,30 @@
+<%- include('partials/header'); -%>
+
+
+<h1>Your Adopted Dogs:</h1>
+
+<div class="dogs-container">
+  <% dogs.forEach(dog => { %>
+    <div class="dog-card">
+      <img src="<%= dog.img %>" alt="<%= dog.name %>">
+      <h2><%= dog.name %></h2>
+      <p><strong>Breed:</strong> <%= dog.breed %></p>
+      <p><strong>Age:</strong> <%= dog.age %></p>
+      <p><%= dog.description %></p>
+    </div>
+  <% }) %>
+</div>
+
+<div class="pagination">
+  <% if (page > 1) { %>
+    <a href="/profile?page=<%= page - 1 %>" class="page-btn">Prev</a>
+  <% } %>
+
+  <span>Page <%= page %> of <%= totalPages %></span>
+
+  <% if (page < totalPages) { %>
+    <a href="/profile?page=<%= page + 1 %>" class="page-btn">Next</a>
+  <% } %>
+</div>
+
+<%- include('partials/footer'); -%>

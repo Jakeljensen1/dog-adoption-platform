@@ -1,0 +1,320 @@
+/* ===== Global Styles ===== */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f4faff;
+  color: #333;
+}
+
+h1,
+h2,
+h3 {
+  color: #1a1a1a;
+  text-align: center;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: #4db8ff;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btn:hover {
+  background: #1a9fff;
+}
+
+/* ===== HOME PAGE ===== */
+header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(to bottom right, #4db8ff, #aee4ff);
+  color: white;
+}
+
+header img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+header h2 {
+  font-size: 48px;
+  margin: 10px 0;
+}
+
+header h3 {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+/* ===== DOGS PAGE ===== */
+.dogs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.dog-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dog-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.dog-card h2 {
+  margin: 10px 0 5px;
+  color: #4db8ff;
+}
+
+.dog-card p {
+  margin: 4px 0;
+}
+
+.adopt-btn {
+  margin-top: 20px;
+  background: #4db8ff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-right: 30px;
+}
+
+.adopt-btn:hover {
+  background: #1a9fff;
+}
+
+.delete-btn {
+  margin-top: 20px;
+  background: #d01414;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-right: 10px;
+}
+
+.delete-btn:hover {
+  background: #a51416;
+}
+
+.profile-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: skyblue;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ===== Form Styling ===== */
+.deleteForm {
+  margin: 0px;
+  padding: 0px;
+}
+
+form {
+  max-width: 600px;
+  margin: 40px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+form button {
+  margin-top: 20px;
+  background: #4db8ff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+form button:hover {
+  background: #1a9fff;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  background: #4db8ff;
+  color: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+nav h1 a {
+  color: white;
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.profile-tile {
+  color: white;
+  background-color: #1a9fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  background: #e8f6ff;
+  color: #333;
+  font-size: 14px;
+  border-top: 2px solid #cfe9ff;
+}
+
+/* POP UP */
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 50%;
+  margin: 10% auto;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+/* Pagination */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 30px 0;
+  font-size: 1rem;
+}
+
+.page-btn {
+  padding: 8px 14px;
+  background-color: #4a90e2;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.page-btn:hover {
+  background-color: #357ABD;
+}
+
+.page-numbers {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.page-number {
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: #eee;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.2s ease;
+}
+
+.page-number:hover {
+  background: #ddd;
+}
+
+.page-number.active {
+  background: #4a90e2;
+  color: white;
+  font-weight: bold;
+}

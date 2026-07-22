@@ -1,0 +1,124 @@
+<%- include('partials/header'); -%>
+<link rel="stylesheet" href="/styles.css">
+<h1>Registered Dogs</h1>
+
+<div class="dogs-container">
+  <% dogs.forEach(dog => { %>
+    <div class="dog-card">
+      <img src="<%= dog.img %>" alt="<%= dog.name %>">
+      <h2><%= dog.name %></h2>
+      <p><strong>Breed:</strong> <%= dog.breed %></p>
+      <p><strong>Age:</strong> <%= dog.age %></p>
+      <p><%= dog.description %></p>
+
+      <button class="adopt-btn" onclick="adoptDog('<%= dog._id %>')">Adopt!</button>
+      <% //console.log(currentUser, dog.owner) %>
+      <% if (currentUser && dog.owner && dog.owner._id.toString() === currentUser.id) { %>
+        
+        <form class="deleteForm" action="/dogs/<%= dog._id %>" method="POST" style="display: inline;">
+          <button type="submit" class="delete-btn">
+            Remove
+          </button>
+        </form>
+      <% } %>
+    </div>
+  <% }) %>
+</div>
+
+<div class="pagination">
+  <% if (page > 1) { %>
+    <a href="/dogs?page=<%= page - 1 %>" class="page-btn">Prev</a>
+  <% } %>
+
+  <span>Page <%= page %> of <%= totalPages %></span>
+
+  <% if (page < totalPages) { %>
+    <a href="/dogs?page=<%= page + 1 %>" class="page-btn">Next</a>
+  <% } %>
+</div>
+
+<hr>
+
+<h2>Add a New Dog</h2>
+
+<form id="dogForm">
+  <label>Name</label>
+  <input type="text" name="name" required>
+
+  <label>Image URL</label>
+  <input type="text" name="img" required>
+
+  <label>Age</label>
+  <input type="number" name="age" required>
+
+  <label>Breed</label>
+  <input type="text" name="breed" required>
+
+  <label>Description</label>
+  <textarea name="description" required></textarea>
+
+  <button>Add Dog</button>
+</form>
+
+<div id="adoptModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeAdoptModal()">&times;</span>
+    <h2 id="adoptMessage"></h2>
+    <button onclick="openProfileView()" class="profile-btn">View My Adopted Dogs</button>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('dogForm');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const dog = {
+      name: form.name.value,
+      img: form.img.value,
+      age: form.age.value,
+      breed: form.breed.value,
+      description: form.description.value,
+      //owner:"<% //currentUser.id %>"
+    };
+
+    const res = await fetch('/dogs', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dog)
+    });
+
+    const data = await res.json();
+
+    if (data.dog) {
+      location.reload(); // refresh to show new dog
+    }
+  });
+
+  async function adoptDog(dogId) {
+    const res = await fetch(`/dogs/${dogId}/adopt`, {
+      method: 'POST'
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      document.getElementById('adoptMessage').innerText = data.message;
+      document.getElementById('adoptModal').style.display = 'block';
+    } else {
+      alert(data.error);
+    }
+  }
+
+  function closeAdoptModal() {
+    document.getElementById('adoptModal').style.display = 'none';
+  }
+
+  function openProfileView() {
+    window.location.href = '/profile';
+  }
+
+</script>
+
+<%- include('partials/footer'); -%>

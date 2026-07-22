@@ -29,9 +29,9 @@ app.set('view engine', 'ejs');
 //app.get('*', checkUser)
 
 //db connection, using mongoose for access to schemas, models, validation..
-const dbURI = 'mongodb+srv://jakeljensen1_db_user:LACxfdj4qwDmO3vM@cluster0.7brcdar.mongodb.net/?appName=Cluster0'
+//const dbURI = 'mongodb+srv://jakeljensen1_db_user:<password>@cluster0.7brcdar.mongodb.net/?appName=Cluster0'
 
-mongoose.connect(dbURI)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => app.listen(3000))
   .catch(err => console.log(err));
 
